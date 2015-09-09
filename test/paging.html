@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分页--插件</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="pag-nav" id="pagging">
+
+        </nav>
+    </div>
+</body>
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../build/js/pagination-0.1.0.min.js"></script>
+<script>
+    $(function(){
+        var pageSize = 350,tagIdx= 1,limit=10;
+
+        pageation(tagIdx)
+
+        function pageation(currentIdx,limit){
+            var param = {};
+                param.currentIdx = tagIdx-1;
+                param.limit = limit;
+
+            $("#pagging").pagging({
+                sum: pageSize,
+                param:param,
+                current: tagIdx,
+                callback: function(idx, param) {
+                    tagIdx = idx;
+                    pageation (tagIdx,limit);
+                }
+            })
+        }
+    });
+</script>
+</html>
